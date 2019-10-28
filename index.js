@@ -93,6 +93,9 @@ function cloneLayer (layer) {
     if (layer instanceof L.LayerGroup) {
         return L.layerGroup(cloneInnerLayers(layer));
     }
+    if (layer instanceof L.Popup) {
+      return L.popup().setLatLng(layer.getLatLng()).setContent(layer.getContent());
+    }
 
     throw 'Unknown layer, cannot clone this layer. Leaflet-version: ' + L.version;
 }
